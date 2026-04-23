@@ -143,7 +143,7 @@ export default function Sidebar({ isOpen, onClose }) {
                         onClick={() => onClose && onClose()}
                         className={({ isActive }) =>
                           `flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors ${
-                            isActive ? "bg-[#383230] text-[#F2EBE9]" : "text-[#8F8A88] hover:bg-white/5 hover:text-[#F2EBE9]"
+                            isActive ? "bg-[#423C3A] text-[#F2EBE9]" : "text-[#8F8A88] hover:bg-white/5 hover:text-[#F2EBE9]"
                           }`
                         }
                       >
@@ -167,11 +167,11 @@ export default function Sidebar({ isOpen, onClose }) {
         </nav>
 
         <div className="mt-auto px-4 pb-6 pt-4">
-          <div className="relative pt-5">
-              <span className="absolute left-2 top-0 z-10 rounded-t-[12px] rounded-b-[10px] bg-[#6D2F1F] px-3 py-1 font-['Work_Sans'] text-[11px] font-medium tracking-wide text-[#F8D7C9]">
+          <div>
+              <span className="mx-auto mb-0 flex h-[31px] w-[220px] max-w-[710px] items-center justify-center gap-4 rounded-t-[20px] rounded-b-none bg-[#642D20] px-5 font-['Work_Sans'] text-[11px] font-medium tracking-wide text-[#FE9D84]">
                   Free Trial ends in 5d:3h:12m
               </span>
-              <div className="cursor-pointer rounded-[20px] bg-[#221D1B] p-5 pt-7 transition-colors hover:bg-[#2A2422]">
+              <div className="cursor-pointer rounded-[20px] bg-[#221D1B] p-5 transition-colors hover:bg-[#2A2422]">
                   <div className="mb-1 flex items-center justify-between">
                       <h4 className="font-['Plus_Jakarta_Sans'] text-[16px] font-bold text-[#F2EBE9]">Start subscribing</h4>
                       <ChevronRight size={18} className="text-[#F2EBE9]" />
