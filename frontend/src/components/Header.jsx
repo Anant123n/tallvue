@@ -1,19 +1,12 @@
 import { ChevronDown, Menu } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import headerProfileIcon from "../assets/icons/header-profile.png";
+import { getRouteSection } from "../utils/routeSection";
 
 export default function Header({ onOpenSidebar }) {
   const location = useLocation();
   
-  // Determine page title based on route
-  const getPageTitle = () => {
-    if (location.pathname.startsWith("/meditate")) return "Meditate";
-    if (location.pathname.startsWith("/care")) return "Care";
-    if (location.pathname.startsWith("/dreams")) return "Dreams";
-    if (location.pathname.startsWith("/arc")) return "Arc";
-    if (location.pathname.startsWith("/journal")) return "Journal";
-    return "";
-  };
+  const pageTitle = getRouteSection(location.pathname) || "";
 
   return (
     <header className="sticky top-0 z-20 flex w-full items-center justify-between px-8 py-8 text-[#F2EBE9]">
@@ -23,7 +16,7 @@ export default function Header({ onOpenSidebar }) {
         </button>
         {/* Desktop Page Title */}
         <h1 className="hidden md:block font-['Plus_Jakarta_Sans'] text-[24px] font-bold leading-none text-[#B6B0AF]">
-          {getPageTitle()}
+          {pageTitle}
         </h1>
         {/* Mobile Logo */}
         <div className="flex items-end gap-1 md:hidden">

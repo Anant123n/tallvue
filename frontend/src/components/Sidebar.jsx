@@ -8,6 +8,7 @@ import careHomeIcon from "../assets/icons/care-home.png";
 import careHighlightsIcon from "../assets/icons/care-highlights.png";
 import careTrendsIcon from "../assets/icons/care-trends.png";
 import careResourcesIcon from "../assets/icons/care-resources.png";
+import { getRouteSection } from "../utils/routeSection";
 
 export default function Sidebar({ isOpen, onClose }) {
   const location = useLocation();
@@ -39,21 +40,10 @@ export default function Sidebar({ isOpen, onClose }) {
     },
   ];
 
-  const [expandedMenu, setExpandedMenu] = useState(() => {
-    if (location.pathname.startsWith("/meditate")) return "Meditate";
-    if (location.pathname.startsWith("/care")) return "Care";
-    if (location.pathname.startsWith("/dreams")) return "Dreams";
-    if (location.pathname.startsWith("/arc")) return "Arc";
-    if (location.pathname.startsWith("/journal")) return "Journal";
-    return null;
-  });
+  const [expandedMenu, setExpandedMenu] = useState(() => getRouteSection(location.pathname));
 
   useEffect(() => {
-    if (location.pathname.startsWith("/meditate")) setExpandedMenu("Meditate");
-    else if (location.pathname.startsWith("/care")) setExpandedMenu("Care");
-    else if (location.pathname.startsWith("/dreams")) setExpandedMenu("Dreams");
-    else if (location.pathname.startsWith("/arc")) setExpandedMenu("Arc");
-    else if (location.pathname.startsWith("/journal")) setExpandedMenu("Journal");
+    setExpandedMenu(getRouteSection(location.pathname));
   }, [location.pathname]);
 
   return (
