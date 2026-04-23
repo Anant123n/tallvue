@@ -63,7 +63,7 @@ export default function Sidebar({ isOpen, onClose }) {
       )}
 
       <aside
-        className={`fixed bottom-0 left-0 top-0 z-30 flex w-[280px] flex-col overflow-y-auto border-r border-white/5 bg-[#171312] transition-transform duration-300 md:translate-x-0 ${
+        className={`fixed inset-0 z-30 flex w-full flex-col overflow-y-auto bg-[#171312] transition-transform duration-300 md:bottom-0 md:left-0 md:right-auto md:top-0 md:w-[280px] md:border-r md:border-white/5 md:translate-x-0 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -167,11 +167,11 @@ export default function Sidebar({ isOpen, onClose }) {
         </nav>
 
         <div className="mt-auto px-4 pb-6 pt-4">
-          <div className="relative pt-3">
-              <span className="absolute -top-1 left-4 z-10 rounded-full bg-[#3D1A12] px-2.5 py-0.5 font-['Work_Sans'] text-[11px] font-medium tracking-wide text-[#FE6847]">
+          <div className="relative pt-5">
+              <span className="absolute left-2 top-0 z-10 rounded-t-[12px] rounded-b-[10px] bg-[#6D2F1F] px-3 py-1 font-['Work_Sans'] text-[11px] font-medium tracking-wide text-[#F8D7C9]">
                   Free Trial ends in 5d:3h:12m
               </span>
-              <div className="cursor-pointer rounded-[20px] bg-[#221D1B] p-5 pt-6 transition-colors hover:bg-[#2A2422]">
+              <div className="cursor-pointer rounded-[20px] bg-[#221D1B] p-5 pt-7 transition-colors hover:bg-[#2A2422]">
                   <div className="mb-1 flex items-center justify-between">
                       <h4 className="font-['Plus_Jakarta_Sans'] text-[16px] font-bold text-[#F2EBE9]">Start subscribing</h4>
                       <ChevronRight size={18} className="text-[#F2EBE9]" />

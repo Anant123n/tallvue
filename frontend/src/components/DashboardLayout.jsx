@@ -7,7 +7,7 @@ export default function DashboardLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#141212] flex font-sans">
+    <div className="min-h-screen flex bg-[#171312] font-sans">
       <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
       <div className="flex-1 md:ml-[280px] flex flex-col h-screen overflow-hidden w-full transition-all duration-300">
         <Header onOpenSidebar={() => setIsSidebarOpen(true)} />
