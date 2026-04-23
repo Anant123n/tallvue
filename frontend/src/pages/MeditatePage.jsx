@@ -1,61 +1,89 @@
+import React from 'react';
+
 export default function MeditatePage() {
   return (
-    <div className="bg-[#1C1A1A] rounded-[24px] h-full flex flex-col lg:flex-row lg:items-center justify-between p-8 lg:p-14 gap-12 overflow-y-auto">
+    <div className="flex h-full min-h-0 w-full flex-col overflow-y-auto rounded-[24px] bg-[#1E1C1A] p-8 md:p-10 lg:p-12 xl:p-16">
       
-      {/* Left Column container (Text part) */}
-      <div className="flex-1 flex flex-col justify-between h-full min-h-[360px] lg:max-w-[50%]">
-        <h2 className="text-4xl lg:text-[54px] font-bold text-white leading-[1.1] tracking-tight">
-          Guided meditations<br />tailored for you
-        </h2>
+      {/* Top Heading Section */}
+      <div className="mb-8 mt-2">
+        <h1 className="font-['Plus_Jakarta_Sans',_sans-serif] text-[44px] font-bold leading-[1.05] tracking-tight text-[#F2EBE9] lg:text-[56px] xl:text-[68px]">
+          Guided meditations <br />
+          tailored for you
+        </h1>
+      </div>
 
-        <div className="mt-12 lg:mt-auto max-w-[340px]">
-          <div className="flex items-center gap-2 mb-4">
-            <div className="w-2 h-2 rounded-full bg-white"></div>
-            <span className="text-[11px] font-semibold tracking-[0.15em] text-zinc-400">UPCOMING</span>
+      {/* Flexible Spacer to push bottom content down naturally */}
+      <div className="min-h-[40px] flex-1"></div>
+
+      {/* Bottom Content Section - Fluid Percentages */}
+      <div className="flex w-full flex-col gap-12 lg:flex-row lg:items-end lg:justify-between lg:gap-8">
+        
+        {/* Left Column: Notification Opt-in */}
+        <div className="flex w-full flex-col gap-6 pb-2 lg:w-[38%] xl:w-[35%] xl:pb-4">
+          <div className="flex flex-col gap-5">
+            <div className="flex items-center gap-3">
+              <div className="h-[8px] w-[8px] rounded-full bg-[#E0D8D6]"></div>
+              <span className="font-['Work_Sans',_sans-serif] text-[12px] font-semibold uppercase tracking-[0.15em] text-[#B6B0AF]">
+                Upcoming
+              </span>
+            </div>
+
+            <h2 className="font-['Plus_Jakarta_Sans',_sans-serif] text-[28px] font-bold tracking-tight text-[#F2EBE9] lg:text-[32px] xl:text-[36px]">
+              Notify Me When Live
+            </h2>
+
+            <p className="font-['Work_Sans',_sans-serif] text-[14px] leading-[1.6] text-[#B6B0AF] xl:text-[15px]">
+              Receive email notifications when the website goes<br className="hidden xl:block" />
+              live - Be the first to experience Meditation.
+            </p>
           </div>
-          <h3 className="text-2xl font-bold text-white mb-4 tracking-tight">Notify Me When Live</h3>
-          <p className="text-[13px] text-zinc-400 mb-8 leading-relaxed pr-8">
-            Receive email notifications when the website goes live - Be the first to experience Meditation.
-          </p>
-          <button className="bg-[#FA6E50] hover:bg-[#ff7a5e] transition-colors text-[#1C1A1A] font-semibold text-sm px-6 py-2.5 rounded-full w-full md:w-auto">
+
+          <button className="w-fit rounded-full bg-[#FE6847] px-8 py-3.5 font-['Work_Sans',_sans-serif] text-[14px] font-bold text-[#1C1A1A] transition-transform hover:scale-105 active:scale-95 xl:text-[15px]">
             Notify Me
           </button>
         </div>
-      </div>
 
-      {/* Right Column container (Cards part) */}
-      <div className="flex-1 w-full lg:max-w-[48%] flex flex-col gap-6">
-        
-        <div className="rounded-[20px] p-6 lg:p-8 flex flex-row gap-5 lg:gap-6 relative overflow-hidden bg-gradient-to-r from-[#2A1E1E]/80 to-[#1C1A1A]/80 w-full border border-black/10">
-          <div className="text-6xl font-bold text-white/20 select-none font-sans flex text-center items-center h-full tracking-tighter">
-            1.
+        {/* Right Column: Feature Cards */}
+        <div className="flex w-full flex-col gap-5 lg:w-[58%] xl:w-[60%]">
+          
+          {/* Card 1 */}
+          <div className="relative isolate flex flex-row items-center gap-6 overflow-hidden rounded-[24px] border border-white/5 bg-[#2A211F] p-8 lg:p-8 xl:p-10">
+            {/* Soft Warm Glow */}
+            <div className="absolute left-[15%] top-[-20%] -z-10 h-40 w-40 rounded-full bg-[#FE6847] opacity-15 blur-[50px]"></div>
+            
+            <div className="w-[64px] shrink-0 select-none font-['Plus_Jakarta_Sans',_sans-serif] text-[72px] font-extrabold leading-[0.8] tracking-tighter text-white/5 xl:w-[72px] xl:text-[88px]">
+              1.
+            </div>
+
+            <div className="flex min-w-0 flex-col gap-2">
+              <h3 className="font-['Plus_Jakarta_Sans',_sans-serif] text-[18px] font-bold leading-snug text-[#F2EBE9] xl:text-[22px]">
+                Explore personalized meditation sessions
+              </h3>
+              <p className="font-['Work_Sans',_sans-serif] text-[13px] leading-relaxed text-[#A39E9D] xl:text-[14.5px]">
+                Our system adapts to your needs, offering custom meditations for a focused and transformative experience.
+              </p>
+            </div>
           </div>
-          <div className="flex flex-col justify-center">
-            <h4 className="text-[17px] font-bold text-white mb-2 leading-snug tracking-tight">
-              Explore personalized meditation sessions
-            </h4>
-            <p className="text-[11.5px] text-white/70 leading-relaxed font-medium">
-              Our system adapts to your needs, offering custom meditations for a focused and transformative experience.
-            </p>
+
+          {/* Card 2 */}
+          <div className="relative isolate flex flex-row items-center gap-6 overflow-hidden rounded-[24px] border border-white/5 bg-[#405E5C] p-8 lg:p-8 xl:p-10">
+            
+            <div className="w-[64px] shrink-0 select-none font-['Plus_Jakarta_Sans',_sans-serif] text-[72px] font-extrabold leading-[0.8] tracking-tighter text-white/20 xl:w-[72px] xl:text-[88px]">
+              2.
+            </div>
+
+            <div className="flex min-w-0 flex-col gap-2">
+              <h3 className="font-['Plus_Jakarta_Sans',_sans-serif] text-[18px] font-bold leading-snug text-[#F2EBE9] xl:text-[22px]">
+                Discover AI-powered guided meditations
+              </h3>
+              <p className="font-['Work_Sans',_sans-serif] text-[13px] leading-relaxed text-[#EBE5E4] xl:text-[14.5px]">
+                Our tool helps you track your progress and gain insights to guide your meditation journey.
+              </p>
+            </div>
           </div>
+
         </div>
-
-        <div className="rounded-[20px] p-6 lg:p-8 flex flex-row gap-5 lg:gap-6 relative overflow-hidden bg-gradient-to-r from-[#5B8277] to-[#3B544A] w-full border border-black/10">
-          <div className="text-6xl font-bold text-white/20 select-none font-sans flex text-center items-center h-full tracking-tighter">
-            2.
-          </div>
-          <div className="flex flex-col justify-center">
-            <h4 className="text-[17px] font-bold text-white mb-2 leading-snug tracking-tight">
-              Discover AI-powered guided meditations
-            </h4>
-            <p className="text-[11.5px] text-white/70 leading-relaxed font-medium">
-              Our tool helps you track your progress and gain insights to guide your meditation journey.
-            </p>
-          </div>
-        </div>
-
       </div>
-      
     </div>
   );
 }

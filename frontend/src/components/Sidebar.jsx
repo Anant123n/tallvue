@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { ChevronDown, ChevronRight, Sun, TrendingUp, Folder, Home, X, Activity, UserCog, LogOut } from "lucide-react";
+import { ChevronDown, ChevronRight, Sun, TrendingUp, Folder, Home, X, Activity, UserCog } from "lucide-react";
 
 export default function Sidebar({ isOpen, onClose }) {
   const location = useLocation();
@@ -41,7 +41,6 @@ export default function Sidebar({ isOpen, onClose }) {
     return null;
   });
 
-  // Auto-expand menus if we navigate directly to them, creating "exclusive" open states
   useEffect(() => {
     if (location.pathname.startsWith("/meditate")) setExpandedMenu("Meditate");
     else if (location.pathname.startsWith("/care")) setExpandedMenu("Care");
@@ -50,149 +49,123 @@ export default function Sidebar({ isOpen, onClose }) {
     else if (location.pathname.startsWith("/journal")) setExpandedMenu("Journal");
   }, [location.pathname]);
 
-  const toggleMenu = (label) => {
-    setExpandedMenu(prev => (prev === label ? null : label));
-  };
-
   return (
     <>
-      {/* Mobile Backdrop */}
       {isOpen && (
-        <div 
-          className="fixed inset-0 bg-black/50 z-20 md:hidden"
-          onClick={onClose}
-        />
+        <div className="fixed inset-0 z-20 bg-black/50 md:hidden" onClick={onClose} />
       )}
 
-      <aside 
-        className={`fixed left-0 top-0 bottom-0 w-64 bg-[#141212] overflow-y-auto flex flex-col font-sans border-r border-[#2A2A2A] z-30 transition-transform duration-300 md:translate-x-0 ${
+      <aside
+        className={`fixed bottom-0 left-0 top-0 z-30 flex w-[280px] flex-col overflow-y-auto border-r border-white/5 bg-[#171312] transition-transform duration-300 md:translate-x-0 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        {/* Logo Area */}
-        <div className="flex justify-between items-center px-6 pt-6 pb-4">
-          <div className="flex items-center gap-1 text-[#F37254] font-semibold text-xl tracking-tight">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-[#F37254]">
-              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-            <div className="flex flex-col ml-1">
-              <span className="leading-none tracking-wider">Tallvue</span>
-              <span className="text-[0.55rem] text-[#F37254]/70 leading-none tracking-widest mt-0.5">DREAMS</span>
+        <div className="flex items-center justify-between px-6 py-8">
+          <div className="flex h-[30px] w-[105px] shrink-0 items-center gap-1 cursor-pointer">
+            <div className="flex flex-col relative select-none w-full h-full justify-end">
+               <div className="flex items-end font-extrabold text-[#FE6847] text-[22px] tracking-tight leading-none" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>
+                 <span className="relative z-10">Ta</span>
+                 <div className="relative mx-[1.5px] mb-[1px] h-[17px] w-[5px] bg-[#FE6847]">
+                    <div className="absolute top-0 right-0 w-0 h-0 border-t-[5px] border-l-[5px] border-l-transparent border-t-[#171312]"></div>
+                 </div>
+                 <div className="relative mx-[1.5px] mb-[1px] flex h-[26px] w-[5px] justify-center bg-[#FE6847]">
+                    <div className="absolute top-[-11px] flex w-[22px] justify-center">
+                       <svg viewBox="0 0 24 24" className="w-[20px] h-[20px] overflow-visible">
+                          <path d="M 9.5 8 L 14.5 8 L 13.5 17 L 10.5 17 Z" fill="#FE6847" />
+                          <line x1="10.5" y1="8" x2="9.5" y2="2.5" stroke="#FE6847" strokeWidth="2.5" strokeLinecap="round" />
+                          <line x1="13.5" y1="8" x2="14.5" y2="2.5" stroke="#FE6847" strokeWidth="2.5" strokeLinecap="round" />
+                          <line x1="9.5" y1="11" x2="3" y2="9" stroke="#FE6847" strokeWidth="3" strokeLinecap="round" />
+                          <line x1="14.5" y1="11" x2="21" y2="9" stroke="#FE6847" strokeWidth="3" strokeLinecap="round" />
+                          <line x1="10.5" y1="17.5" x2="13.5" y2="17.5" stroke="#171312" strokeWidth="1.5" />
+                       </svg>
+                    </div>
+                 </div>
+                 <span className="relative z-10 ml-[1.5px]">vue</span>
+               </div>
+               <div className="mt-px hidden self-end pr-[5px] text-[7px] font-bold tracking-[0.2em] text-[#F2EBE9] md:block">
+                 DREAMS
+               </div>
             </div>
-            <ChevronDown size={14} className="ml-2 text-zinc-500 hidden md:block" />
+            <ChevronDown size={16} strokeWidth={2.5} className="mb-[6px] hidden shrink-0 text-[#FE6847] md:block" />
           </div>
-          
-          {/* Mobile Close Button */}
-          <button onClick={onClose} className="md:hidden text-zinc-400 hover:text-white">
+          <button onClick={onClose} className="text-zinc-400 hover:text-white md:hidden">
             <X size={20} />
           </button>
         </div>
 
-        {/* Primary Navigation */}
-        <nav className="mt-2 px-4 flex flex-col gap-1">
+        <nav className="mt-2 flex flex-col px-4">
           {primaryLinks.map((link) => {
             const isExpanded = expandedMenu === link.label;
             
             return (
-              <div key={link.label} className="border-b border-[#2A2A2A] last:border-b-0 pb-1 mb-1">
-                {link.subLinks ? (
-                  <NavLink
-                    to={link.to}
-                    onClick={(e) => {
-                      if (isExpanded) {
-                        e.preventDefault();
-                        setExpandedMenu(null);
-                      } else {
-                        setExpandedMenu(link.label);
-                      }
-                    }}
-                    className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm transition-colors text-zinc-300 hover:text-white"
-                  >
-                    <div className="flex items-center">
-                      <span className="font-semibold text-[15px]">{link.label}</span>
-                      {link.isComingSoon && (
-                        <span className="bg-[#FA6E50] text-[#1C1A1A] text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded-md ml-3">
-                          Soon
-                        </span>
-                      )}
-                    </div>
-                    <div className="flex items-center gap-2">
-                      {isExpanded ? (
-                        <X size={15} className="text-zinc-400" />
-                      ) : (
-                        <div className="text-zinc-500 font-light text-[22px] leading-none mb-1">+</div>
-                      )}
-                    </div>
-                  </NavLink>
-                ) : (
-                  <NavLink
-                    to={link.to}
-                    onClick={() => onClose && onClose()}
-                    className="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm transition-colors text-zinc-300 hover:text-white"
-                  >
-                    <div className="flex items-center">
-                      <span className="font-semibold text-[15px]">{link.label}</span>
-                      {link.isComingSoon && (
-                        <span className="bg-[#FA6E50] text-[#1C1A1A] text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded-md ml-3">
-                          Soon
-                        </span>
-                      )}
-                    </div>
-                    <div className="flex items-center gap-2">
-                      {isExpanded ? (
-                        <X size={15} className="text-zinc-400" />
-                      ) : (
-                        <div className="text-zinc-500 font-light text-[22px] leading-none mb-1">+</div>
-                      )}
-                    </div>
-                  </NavLink>
-                )}
+              <div key={link.label} className="border-b border-white/5 pb-2 pt-2 last:border-b-0">
+                <NavLink
+                  to={link.subLinks ? link.subLinks[0].to : link.to}
+                  onClick={(e) => {
+                    if (link.subLinks) {
+                      e.preventDefault();
+                      setExpandedMenu(isExpanded ? null : link.label);
+                    } else if (onClose) onClose();
+                  }}
+                  className="flex w-full items-center justify-between rounded-xl px-3 py-2 text-[#F2EBE9] transition-colors hover:bg-white/5"
+                >
+                  <div className="flex items-center">
+                    <span className="font-['Plus_Jakarta_Sans'] text-[18px] font-bold tracking-wide">{link.label}</span>
+                    {link.isComingSoon && (
+                      <span className="ml-3 rounded bg-[#FE6847] px-1.5 py-[2px] font-['Work_Sans'] text-[10px] font-bold uppercase tracking-widest text-[#3D1A12]">
+                        Soon
+                      </span>
+                    )}
+                  </div>
+                  <div className="flex items-center text-[#B6B0AF]">
+                    {isExpanded ? <X size={16} /> : <span className="text-[20px] font-light leading-none">+</span>}
+                  </div>
+                </NavLink>
 
-                {/* SubLinks */}
-                {isExpanded && link.subLinks && (
-                  <div className="flex flex-col gap-1 mt-1 mb-2">
-                    {link.subLinks.map((sub) => (
+                <div
+                  className={`grid transition-all duration-300 ease-in-out ${
+                    isExpanded ? "grid-rows-[1fr] opacity-100 mt-1" : "grid-rows-[0fr] opacity-0"
+                  }`}
+                >
+                  <div className="overflow-hidden flex flex-col gap-0.5">
+                    {link.subLinks && link.subLinks.map((sub) => (
                       <NavLink
                         key={sub.label}
                         to={sub.to}
+                        end={sub.to === link.to}
                         onClick={() => onClose && onClose()}
                         className={({ isActive }) =>
-                          `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${
-                            isActive ? "bg-[#363434] text-zinc-300" : "text-zinc-400 hover:text-zinc-300 hover:bg-[#1E1E1E]"
+                          `flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors ${
+                            isActive ? "bg-[#383230] text-[#F2EBE9]" : "text-[#8F8A88] hover:bg-white/5 hover:text-[#F2EBE9]"
                           }`
                         }
                       >
-                        {sub.icon && <sub.icon size={16} className="text-zinc-400" />}
-                        <span className="font-medium text-[13px]">{sub.label}</span>
+                        {sub.icon && <sub.icon size={18} className="shrink-0" />}
+                        <span className="font-['Work_Sans'] text-[15px] font-medium">{sub.label}</span>
                       </NavLink>
                     ))}
                   </div>
-                )}
+                </div>
               </div>
             );
           })}
         </nav>
 
-        <div className="mt-auto p-4">
-          <div className="relative pt-3 pb-3">
-              <span className="absolute -top-2 left-4 z-10 bg-[#7B3A2C] text-white text-[10px] font-medium px-2 py-0.5 rounded-full">
+        <div className="mt-auto px-4 pb-6 pt-4">
+          <div className="relative pt-3">
+              <span className="absolute -top-1 left-4 z-10 rounded-full bg-[#3D1A12] px-2.5 py-0.5 font-['Work_Sans'] text-[11px] font-medium tracking-wide text-[#FE6847]">
                   Free Trial ends in 5d:3h:12m
               </span>
-              <div className="bg-[#242222] rounded-xl p-4 pt-6 border border-[#2F2C2C]">
-                  <div className="flex items-center justify-between mb-2">
-                      <h4 className="font-semibold text-zinc-200 text-sm">Start subscribing</h4>
-                      <ChevronRight size={16} className="text-zinc-400" />
+              <div className="cursor-pointer rounded-[20px] bg-[#221D1B] p-5 pt-6 transition-colors hover:bg-[#2A2422]">
+                  <div className="mb-1 flex items-center justify-between">
+                      <h4 className="font-['Plus_Jakarta_Sans'] text-[16px] font-bold text-[#F2EBE9]">Start subscribing</h4>
+                      <ChevronRight size={18} className="text-[#F2EBE9]" />
                   </div>
-                  <p className="text-xs text-zinc-400 leading-relaxed">
+                  <p className="font-['Work_Sans'] text-[13px] leading-[1.5] text-[#8F8A88]">
                       Explore our subscription plans to get full experience with the platform.
                   </p>
               </div>
           </div>
-          
-          <button className="mt-1 w-full flex items-center justify-center gap-2 bg-[#2B2929] hover:bg-[#323030] transition-colors py-3 rounded-xl border border-white/5">
-              <LogOut size={16} className="text-zinc-300" />
-              <span className="text-zinc-300 font-medium text-[13px]">Log out</span>
-          </button>
         </div>
       </aside>
     </>

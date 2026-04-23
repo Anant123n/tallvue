@@ -1,37 +1,48 @@
+import { ChevronDown, Menu, UserRound } from "lucide-react";
 import { useLocation } from "react-router-dom";
-import { User, ChevronDown, Menu } from "lucide-react";
 
 export default function Header({ onOpenSidebar }) {
   const location = useLocation();
-
-  const path = location.pathname.split("/").pop();
-  let title = "Home";
-  if (path) {
-    title = path.charAt(0).toUpperCase() + path.slice(1);
-  }
+  
+  // Determine page title based on route
+  const getPageTitle = () => {
+    if (location.pathname.startsWith("/meditate")) return "Meditate";
+    if (location.pathname.startsWith("/care")) return "Care";
+    if (location.pathname.startsWith("/dreams")) return "Dreams";
+    if (location.pathname.startsWith("/arc")) return "Arc";
+    if (location.pathname.startsWith("/journal")) return "Journal";
+    return "";
+  };
 
   return (
-    <header className="flex items-center justify-between px-6 py-5 md:px-8 text-white relative">
+    <header className="sticky top-0 z-20 flex w-full items-center justify-between px-8 py-8 text-[#F2EBE9]">
       <div className="flex items-center gap-3">
-        <button onClick={onOpenSidebar} className="md:hidden text-zinc-300 hover:text-white">
+        <button onClick={onOpenSidebar} className="text-[#B6B0AF] hover:text-[#F2EBE9] md:hidden">
           <Menu size={24} />
         </button>
-        {/* On mobile, usually the logo pushes to center, but we can just show the title for now or show logo based on design. The screenshot shows tallvue logo in center. */}
-        <h1 className="text-[22px] font-bold text-zinc-300 tracking-wide hidden md:block">{title}</h1>
-        <div className="md:hidden flex items-center gap-1 text-[#F37254] font-semibold text-xl tracking-tight ml-2">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-[#F37254]">
-              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-            <div className="flex flex-col ml-1">
-              <span className="leading-none tracking-wider">Tallvue</span>
-            </div>
+        {/* Desktop Page Title */}
+        <h1 className="hidden md:block font-['Plus_Jakarta_Sans'] text-[24px] font-bold leading-none text-[#B6B0AF]">
+          {getPageTitle()}
+        </h1>
+        {/* Mobile Logo */}
+        <div className="flex items-end gap-1 md:hidden">
+          <div className="flex flex-col leading-none">
+            <span className="font-['Plus_Jakarta_Sans'] text-[28px] font-extrabold tracking-[-0.02em] text-[#FE6847]">
+              Tallvue
+            </span>
+            <span className="self-end pr-1 font-['Plus_Jakarta_Sans'] text-[8px] font-light uppercase tracking-[0.12em] text-[#F2EBE9]">
+              Dreams
+            </span>
+          </div>
         </div>
       </div>
-      
-      <div className="flex items-center gap-2 text-sm text-zinc-300 cursor-pointer hover:text-white pr-1">
-        <User size={16} />
-        <span className="font-medium">Sam</span>
-        <ChevronDown size={14} className="text-zinc-500" />
+
+      <div className="flex cursor-pointer items-center gap-2 transition-opacity hover:opacity-80">
+        <UserRound size={18} className="text-[#F2EBE9]" />
+        <span className="font-['Work_Sans'] text-[15px] font-medium text-[#F2EBE9]">
+          Sam
+        </span>
+        <ChevronDown size={16} className="text-[#B6B0AF]" />
       </div>
     </header>
   );
