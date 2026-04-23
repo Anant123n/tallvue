@@ -1,6 +1,13 @@
 import { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { ChevronDown, ChevronRight, Sun, TrendingUp, Folder, Home, X, Activity, UserCog } from "lucide-react";
+import meditateHomeIcon from "../assets/icons/meditate-home.png";
+import meditateExploreIcon from "../assets/icons/meditate-explore.png";
+import meditateUltradianIcon from "../assets/icons/meditate-ultradian.png";
+import careHomeIcon from "../assets/icons/care-home.png";
+import careHighlightsIcon from "../assets/icons/care-highlights.png";
+import careTrendsIcon from "../assets/icons/care-trends.png";
+import careResourcesIcon from "../assets/icons/care-resources.png";
 
 export default function Sidebar({ isOpen, onClose }) {
   const location = useLocation();
@@ -14,9 +21,9 @@ export default function Sidebar({ isOpen, onClose }) {
       to: "/meditate", 
       isComingSoon: true,
       subLinks: [
-        { label: "Home", to: "/meditate", icon: Home },
-        { label: "Explore Meditations", to: "/meditate/explore", icon: UserCog },
-        { label: "Ultradian Rhythm", to: "/meditate/ultradian", icon: Activity }
+        { label: "Home", to: "/meditate", iconImage: meditateHomeIcon },
+        { label: "Explore Meditations", to: "/meditate/explore", iconImage: meditateExploreIcon },
+        { label: "Ultradian Rhythm", to: "/meditate/ultradian", iconImage: meditateUltradianIcon }
       ]
     },
     { 
@@ -24,10 +31,10 @@ export default function Sidebar({ isOpen, onClose }) {
       to: "/care", 
       isComingSoon: true,
       subLinks: [
-        { label: "Home", to: "/care", icon: Home },
-        { label: "Highlights", to: "/care/highlights", icon: Sun },
-        { label: "Trends", to: "/care/trends", icon: TrendingUp },
-        { label: "Resources", to: "/care/resources", icon: Folder },
+        { label: "Home", to: "/care", iconImage: careHomeIcon },
+        { label: "Highlights", to: "/care/highlights", iconImage: careHighlightsIcon },
+        { label: "Trends", to: "/care/trends", iconImage: careTrendsIcon },
+        { label: "Resources", to: "/care/resources", iconImage: careResourcesIcon },
       ]
     },
   ];
@@ -65,10 +72,10 @@ export default function Sidebar({ isOpen, onClose }) {
             <div className="flex flex-col relative select-none w-full h-full justify-end">
                <div className="flex items-end font-extrabold text-[#FE6847] text-[22px] tracking-tight leading-none" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>
                  <span className="relative z-10">Ta</span>
-                 <div className="relative mx-[1.5px] mb-[1px] h-[17px] w-[5px] bg-[#FE6847]">
+                 <div className="relative mx-[1.5px] mb-px h-[17px] w-[5px] bg-[#FE6847]">
                     <div className="absolute top-0 right-0 w-0 h-0 border-t-[5px] border-l-[5px] border-l-transparent border-t-[#171312]"></div>
                  </div>
-                 <div className="relative mx-[1.5px] mb-[1px] flex h-[26px] w-[5px] justify-center bg-[#FE6847]">
+                 <div className="relative mx-[1.5px] mb-px flex h-[26px] w-[5px] justify-center bg-[#FE6847]">
                     <div className="absolute top-[-11px] flex w-[22px] justify-center">
                        <svg viewBox="0 0 24 24" className="w-[20px] h-[20px] overflow-visible">
                           <path d="M 9.5 8 L 14.5 8 L 13.5 17 L 10.5 17 Z" fill="#FE6847" />
@@ -140,7 +147,15 @@ export default function Sidebar({ isOpen, onClose }) {
                           }`
                         }
                       >
-                        {sub.icon && <sub.icon size={18} className="shrink-0" />}
+                        {sub.iconImage ? (
+                          <img
+                            src={sub.iconImage}
+                            alt=""
+                            className="h-[18px] w-[18px] shrink-0 object-contain"
+                          />
+                        ) : (
+                          sub.icon && <sub.icon size={18} className="shrink-0" />
+                        )}
                         <span className="font-['Work_Sans'] text-[15px] font-medium">{sub.label}</span>
                       </NavLink>
                     ))}
@@ -161,7 +176,7 @@ export default function Sidebar({ isOpen, onClose }) {
                       <h4 className="font-['Plus_Jakarta_Sans'] text-[16px] font-bold text-[#F2EBE9]">Start subscribing</h4>
                       <ChevronRight size={18} className="text-[#F2EBE9]" />
                   </div>
-                  <p className="font-['Work_Sans'] text-[13px] leading-[1.5] text-[#8F8A88]">
+                  <p className="font-['Work_Sans'] text-[13px] leading-normal text-[#8F8A88]">
                       Explore our subscription plans to get full experience with the platform.
                   </p>
               </div>

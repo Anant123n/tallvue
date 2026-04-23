@@ -12,7 +12,7 @@ export default function MeditatePage() {
         </h1>
       </div>
 
-      {/* Bottom Content Section - using flex-1 and relative widths */}
+      {/* Bottom Content Section */}
       <div className="flex w-full flex-col justify-between gap-10 lg:flex-row lg:items-center lg:gap-12 xl:gap-20">
         
         {/* Left Column: Notification Opt-in */}
@@ -39,14 +39,17 @@ export default function MeditatePage() {
           </button>
         </div>
 
-        {/* Right Column: Feature Cards */}
-        {/* flex-1 allows this column to take the remaining relative space seamlessly */}
-        <div className="flex flex-1 w-full flex-col gap-4">
+        {/* Right Column: Feature Cards 
+            Align cards to the right to create the staggered effect
+        */}
+        <div className="flex flex-1 w-full flex-col items-end gap-4 lg:gap-6">
           
-          {/* Card 1 */}
-          <div className="relative isolate flex w-full flex-row items-center gap-6 overflow-hidden rounded-[32px] bg-[#221D1B] border border-white/5 px-6 py-6 lg:px-8 lg:py-8">
-            {/* Ambient Background Blur */}
-            <div className="absolute -left-[20px] -top-[50px] -z-10 h-[150px] w-[150px] rounded-full bg-[#A7CFCB] opacity-20 blur-[40px]"></div>
+          {/* Card 1 
+              Set width to w-[90%] so it starts further to the right 
+          */}
+          <div className="relative isolate flex w-[90%] flex-row items-center gap-6 overflow-hidden rounded-[32px] bg-[#221D1B] border border-white/5 px-6 py-6 lg:px-8 lg:py-8">
+            {/* Ambient Background Blur - Teal for Meditate */}
+            <div className="absolute left-[15%] -top-[50px] -z-10 h-[150px] w-[150px] rounded-full bg-[#A7CFCB] opacity-20 blur-[40px]"></div>
             
             <div className="w-[60px] shrink-0 select-none font-['Plus_Jakarta_Sans',_sans-serif] text-[64px] font-extrabold leading-[1] text-[#A7CFCB] opacity-30 lg:w-[80px] lg:text-[92px]">
               1.
@@ -62,7 +65,9 @@ export default function MeditatePage() {
             </div>
           </div>
 
-          {/* Card 2 */}
+          {/* Card 2 
+              Set width to w-full so it spans the whole space, sticking out on the left 
+          */}
           <div className="relative isolate flex w-full flex-row items-center gap-6 overflow-hidden rounded-[32px] bg-[#405E5C] px-6 py-6 lg:px-8 lg:py-8">
             {/* Ambient Background Blur */}
             <div className="absolute right-0 top-0 -z-10 h-[150px] w-[150px] rounded-full bg-[#A7CFCB] opacity-20 blur-[40px]"></div>

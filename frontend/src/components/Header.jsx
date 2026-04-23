@@ -1,5 +1,6 @@
-import { ChevronDown, Menu, UserRound } from "lucide-react";
+import { ChevronDown, Menu } from "lucide-react";
 import { useLocation } from "react-router-dom";
+import headerProfileIcon from "../assets/icons/header-profile.png";
 
 export default function Header({ onOpenSidebar }) {
   const location = useLocation();
@@ -38,7 +39,7 @@ export default function Header({ onOpenSidebar }) {
       </div>
 
       <div className="flex cursor-pointer items-center gap-2 transition-opacity hover:opacity-80">
-        <UserRound size={18} className="text-[#F2EBE9]" />
+        <img src={headerProfileIcon} alt="" className="h-[18px] w-[18px] object-contain" />
         <span className="font-['Work_Sans'] text-[15px] font-medium text-[#F2EBE9]">
           Sam
         </span>
